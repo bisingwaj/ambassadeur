@@ -21,7 +21,8 @@ export default function ConfidentialitePage() {
         En résumé&nbsp;: nous ne collectons que les informations nécessaires à l&apos;étude de votre
         candidature d&apos;ambassadeur. Elles sont <strong>stockées localement sur les serveurs du
         Ministère</strong> (hébergement souverain, on-premise), <strong>ni vendues, ni utilisées à des fins
-        publicitaires</strong>. Le site public n&apos;utilise <strong>aucun cookie de suivi</strong>.
+        publicitaires</strong>. Le site mesure uniquement sa fréquentation de façon agrégée via
+        Google&nbsp;Analytics (voir «&nbsp;Cookies&nbsp;»).
       </div>
 
       <h2><span className="num">01</span>Responsable du traitement</h2>
@@ -74,16 +75,21 @@ export default function ConfidentialitePage() {
         <li>aux membres <strong>habilités</strong> de la Coordination et de l&apos;équipe Étoile Bleue en charge du recrutement, au sein du Ministère.</li>
       </ul>
       <p>
-        Vos données ne sont <strong>jamais vendues, cédées, ni confiées à un prestataire tiers</strong>&nbsp;:
-        elles restent sous le contrôle exclusif du Ministère.
+        Vos <strong>données de candidature</strong> ne sont <strong>jamais vendues ni cédées</strong> et
+        restent sous le contrôle exclusif du Ministère. Le seul service tiers utilisé est
+        <strong> Google&nbsp;Analytics</strong>, strictement limité à la mesure d&apos;audience du site&nbsp;: il
+        ne traite pas le contenu de vos candidatures (voir «&nbsp;Cookies&nbsp;»).
       </p>
 
       <h2><span className="num">05</span>Hébergement souverain</h2>
       <p>
         Le site et la base de données sont <strong>hébergés en propre (on-premise)</strong> sur{" "}
-        {SITE.legal.hosting}. Toutes les <strong>données sensibles sont stockées localement</strong> sur ces
-        serveurs&nbsp;: elles ne quittent pas le territoire national et ne font l&apos;objet
-        d&apos;<strong>aucun transfert international</strong>.
+        {SITE.legal.hosting}. Vos <strong>données de candidature</strong> et toutes les données sensibles sont
+        <strong> stockées localement</strong> sur ces serveurs&nbsp;: elles ne quittent pas le territoire
+        national et ne sont transmises à aucun tiers. Seule la <strong>mesure d&apos;audience</strong> du site
+        (statistiques de fréquentation agrégées) s&apos;appuie sur Google&nbsp;Analytics, qui traite des données
+        de navigation en dehors de la RDC — <strong>sans jamais inclure le contenu de vos candidatures</strong>
+        {" "}(voir «&nbsp;Cookies&nbsp;»).
       </p>
 
       <h2><span className="num">06</span>Durée de conservation</h2>
@@ -104,9 +110,15 @@ export default function ConfidentialitePage() {
 
       <h2><span className="num">08</span>Cookies</h2>
       <p>
-        Le <strong>site public n&apos;utilise aucun cookie</strong> de mesure d&apos;audience, de suivi ou de
-        publicité. Seul l&apos;espace d&apos;administration réservé (non accessible au public) dépose un cookie
-        strictement nécessaire à l&apos;authentification des personnes habilitées.
+        Le site utilise <strong>Google&nbsp;Analytics</strong> pour mesurer son audience de façon agrégée
+        (pages vues, type d&apos;appareil, provenance). Cet outil <strong>dépose des cookies de mesure</strong> et
+        transmet des données de navigation à Google, susceptible de les traiter <strong>hors de la RDC</strong>.
+        Ces données <strong>n&apos;incluent pas le contenu de votre candidature</strong>. Vous pouvez refuser ces
+        cookies via les réglages de votre navigateur ou le module de désactivation officiel de Google&nbsp;Analytics
+        (<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">tools.google.com/dlpage/gaoptout</a>).
+        Aucun cookie <strong>publicitaire</strong> n&apos;est utilisé. Par ailleurs, l&apos;espace
+        d&apos;administration réservé (non accessible au public) dépose un cookie strictement nécessaire à
+        l&apos;authentification des personnes habilitées.
       </p>
 
       <h2><span className="num">09</span>Vos droits</h2>

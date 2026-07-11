@@ -31,7 +31,7 @@ export const SITE = {
     // Hébergement souverain : serveurs du Ministère (on-premise, RDC).
     hosting:
       "les serveurs du Ministère de la Santé Publique, Hygiène et Prévoyance sociale, à Kinshasa (République démocratique du Congo)",
-    lastUpdated: "10 juillet 2026",
+    lastUpdated: "11 juillet 2026",
   },
 } as const;
 
