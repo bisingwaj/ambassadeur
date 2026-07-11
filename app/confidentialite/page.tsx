@@ -19,7 +19,8 @@ export default function ConfidentialitePage() {
     >
       <div className="note">
         En résumé&nbsp;: nous ne collectons que les informations nécessaires à l&apos;étude de votre
-        candidature d&apos;ambassadeur. Elles ne sont <strong>ni vendues, ni utilisées à des fins
+        candidature d&apos;ambassadeur. Elles sont <strong>stockées localement sur les serveurs du
+        Ministère</strong> (hébergement souverain, on-premise), <strong>ni vendues, ni utilisées à des fins
         publicitaires</strong>. Le site public n&apos;utilise <strong>aucun cookie de suivi</strong>.
       </div>
 
@@ -70,16 +71,19 @@ export default function ConfidentialitePage() {
       <h2><span className="num">04</span>Destinataires</h2>
       <p>Vos données sont accessibles uniquement&nbsp;:</p>
       <ul>
-        <li>aux membres <strong>habilités</strong> de la Coordination et de l&apos;équipe Étoile Bleue en charge du recrutement&nbsp;;</li>
-        <li>à nos sous-traitants techniques d&apos;hébergement (<strong>Supabase</strong>, <strong>Vercel</strong>), qui agissent sur nos instructions et n&apos;utilisent pas vos données pour leur propre compte.</li>
+        <li>aux membres <strong>habilités</strong> de la Coordination et de l&apos;équipe Étoile Bleue en charge du recrutement, au sein du Ministère.</li>
       </ul>
-      <p>Vos données ne sont jamais vendues ni cédées à des tiers à des fins commerciales.</p>
-
-      <h2><span className="num">05</span>Hébergement et transferts</h2>
       <p>
-        Les données sont hébergées sur une infrastructure localisée en {SITE.legal.hostingRegion}. Un
-        transfert hors de la République démocratique du Congo peut donc avoir lieu&nbsp;; il est encadré par
-        les garanties contractuelles de nos hébergeurs et par les mesures de sécurité décrites ci-dessous.
+        Vos données ne sont <strong>jamais vendues, cédées, ni confiées à un prestataire tiers</strong>&nbsp;:
+        elles restent sous le contrôle exclusif du Ministère.
+      </p>
+
+      <h2><span className="num">05</span>Hébergement souverain</h2>
+      <p>
+        Le site et la base de données sont <strong>hébergés en propre (on-premise)</strong> sur{" "}
+        {SITE.legal.hosting}. Toutes les <strong>données sensibles sont stockées localement</strong> sur ces
+        serveurs&nbsp;: elles ne quittent pas le territoire national et ne font l&apos;objet
+        d&apos;<strong>aucun transfert international</strong>.
       </p>
 
       <h2><span className="num">06</span>Durée de conservation</h2>

@@ -6,8 +6,8 @@ export const SITE = {
   tagline: "Le 199, le bon réflexe.",
   description:
     "Le premier service d'aide médicale urgente gratuit arrive à Kinshasa. Étoile Bleue recrute ses Ambassadeurs Communautaires — Cohorte 01. Sa réussite dépend de nous.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ambassadeurs.009.cd",
-  domainLabel: "ambassadeurs.009.cd",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ambassadeurs.199.cd",
+  domainLabel: "ambassadeurs.199.cd",
   ministere:
     "Ministère de la Santé Publique, Hygiène et Prévoyance sociale",
   coordination:
@@ -25,11 +25,12 @@ export const SITE = {
   // ⚠️ À confirmer par la Coordination avant mise en ligne définitive.
   legal: {
     // Adresse de contact « protection des données » (droits d'accès, etc.).
-    contactEmail: "protection-donnees@ambassadeurs.009.cd",
+    contactEmail: "data@199.cd",
     // Durée de conservation des candidatures non retenues.
     retention: "24 mois après la clôture de la campagne de recrutement",
-    // Région d'hébergement de la base (voir Supabase → Project Settings).
-    hostingRegion: "Union européenne (Francfort)",
+    // Hébergement souverain : serveurs du Ministère (on-premise, RDC).
+    hosting:
+      "les serveurs du Ministère de la Santé Publique, Hygiène et Prévoyance sociale, à Kinshasa (République démocratique du Congo)",
     lastUpdated: "10 juillet 2026",
   },
 } as const;

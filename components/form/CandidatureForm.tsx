@@ -371,6 +371,10 @@ export default function CandidatureForm() {
               {consentErr && <p style={{ font: "600 14px/1.4 var(--font-schibsted),sans-serif", color: "#C8402C", margin: "12px 0 0" }}>{consentErr}</p>}
               {error && <p style={{ font: "600 14px/1.4 var(--font-schibsted),sans-serif", color: "#C8402C", margin: "12px 0 0" }}>{error}</p>}
 
+              <p style={{ font: "400 13px/1.5 var(--font-schibsted),sans-serif", color: "#98A2B6", margin: "16px 0 0" }}>
+                🔒 Vos données sont hébergées en propre (on-premise) et stockées localement sur les serveurs du Ministère, en République démocratique du Congo. Elles ne sont ni vendues ni transférées à l&apos;étranger.
+              </p>
+
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 28 }}>
                 <button onClick={back} style={{ background: "none", border: "none", cursor: "pointer", font: "600 15px/1 var(--font-schibsted),sans-serif", color: "#98A2B6", padding: "10px 0" }}>← Retour</button>
                 <button onClick={submit} disabled={submitting} style={{ display: "inline-flex", alignItems: "center", gap: 9, background: submitting ? "#7FA0DC" : "#2E6AE0", color: "#fff", border: "none", cursor: submitting ? "default" : "pointer", fontWeight: 700, fontSize: 16, padding: "15px 26px", marginLeft: "auto" }}>

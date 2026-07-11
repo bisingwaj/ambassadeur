@@ -40,9 +40,8 @@ export default function ConditionsPage() {
         <strong>{SITE.ministere}</strong> (République démocratique du Congo).
       </p>
       <p>
-        Le Site est hébergé par <strong>Vercel Inc.</strong> et la base de données par{" "}
-        <strong>Supabase</strong>. L&apos;infrastructure est mutualisée et localisée en{" "}
-        {SITE.legal.hostingRegion}.
+        Le Site et l&apos;ensemble des données sont <strong>hébergés en propre (on-premise)</strong> sur{" "}
+        {SITE.legal.hosting}. Aucune donnée sensible n&apos;est stockée en dehors des serveurs du Ministère.
       </p>
 
       <h2><span className="num">03</span>Accès au service</h2>
