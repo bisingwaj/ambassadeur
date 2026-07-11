@@ -4,9 +4,10 @@ import Script from "next/script";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
-// Identifiant Google Analytics (gtag.js). Configurable via env, sinon la
-// valeur fournie par la Coordination.
+// Identifiants de mesure d'audience / marketing. Configurables via env,
+// sinon les valeurs fournies par la Coordination.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-JC3VFEC9CF";
+const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1349940203756240";
 
 // Polices auto-hébergées (offline-safe, rapides, sans requête tierce).
 const schibsted = localFont({
@@ -82,6 +83,21 @@ export default function RootLayout({
               gtag('config', '${GA_ID}');
             `}
           </Script>
+        </>
+      )}
+      {FB_PIXEL_ID && (
+        <>
+          <Script id="meta-pixel" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${FB_PIXEL_ID}');
+              fbq('track', 'PageView');
+            `}
+          </Script>
+          <noscript>
+            <img height="1" width="1" style={{ display: "none" }} alt=""
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`} />
+          </noscript>
         </>
       )}
     </html>
