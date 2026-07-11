@@ -108,6 +108,7 @@ export default async function AdminOverview() {
         <Panel title="Langues parlées"><HBar data={countByArray(rows, "langues")} color={CHART.blue} /></Panel>
         <Panel title="Domaines d'aide"><HBar data={countByArray(rows, "secteurs")} color={CHART.violet} /></Panel>
         <Panel title="Tranches d'âge"><HBar data={countBy(rows, "age")} color={CHART.green} /></Panel>
+        <Panel title="Genre"><HBar data={countBy(rows, "genre")} color={CHART.amber} /></Panel>
       </div>
 
       {/* Rangée dispo + score */}

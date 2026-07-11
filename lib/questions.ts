@@ -1,5 +1,5 @@
 // Définition du formulaire de candidature — fidèle au prototype d'origine.
-// 17 questions, réparties en étapes. Sert à la fois au formulaire public
+// 20 questions, réparties en étapes. Sert à la fois au formulaire public
 // et au rendu du détail dans le dashboard admin.
 
 export type QuestionType =
@@ -35,8 +35,11 @@ export const COMMUNES = [
 export const QUESTIONS: Question[] = [
   { key: "nom", type: "text", label: "Nom et prénom", q: "Comment t'appelles-tu ?", help: "Ton nom et ton prénom.", ph: "Ex. Kabeya Mwamba" },
   { key: "age", type: "single", label: "Âge", q: "Quelle est ta tranche d'âge ?", options: ["18 – 25 ans", "26 – 35 ans", "36 – 50 ans"] },
+  { key: "genre", type: "single", label: "Genre", q: "Quel est ton genre ?", options: ["Homme", "Femme", "Autre"] },
   { key: "commune", type: "grid", label: "Commune", q: "Dans quelle commune vis-tu ?", help: "Les 24 communes de Kinshasa.", errMsg: "Choisis ta commune." },
   { key: "quartier", type: "text", label: "Quartier", q: "Et ton quartier ?", ph: "Ex. Matonge" },
+  { key: "avenue", type: "text", label: "Avenue", q: "Sur quelle avenue habites-tu ?", ph: "Ex. Avenue Kasa-Vubu" },
+  { key: "numero", type: "text", label: "N° parcelle", q: "Quel est le numéro de ta parcelle ?", help: "Le numéro inscrit sur ta maison ou parcelle.", ph: "Ex. 12" },
   { key: "langues", type: "multi", label: "Langues", q: "Quelles langues parles-tu ?", help: "Plusieurs choix possibles.", options: ["Français", "Lingala", "Swahili", "Tshiluba", "Kikongo", "Autre"] },
   { key: "email", type: "email", label: "E-mail", q: "Ton adresse e-mail ?", help: "Pour te tenir informé(e).", ph: "prenom@email.com" },
   { key: "tel", type: "tel", label: "WhatsApp", q: "Ton numéro WhatsApp ?", help: "Juste les 9 chiffres après +243 — c'est par là qu'on te recontactera.", ph: "812 345 678" },

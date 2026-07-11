@@ -41,8 +41,8 @@ export default function ConfidentialitePage() {
           <tr><th>Catégorie</th><th>Données</th></tr>
         </thead>
         <tbody>
-          <tr><td>Identité</td><td>Nom et prénom, tranche d&apos;âge</td></tr>
-          <tr><td>Localisation</td><td>Commune et quartier de résidence (Kinshasa)</td></tr>
+          <tr><td>Identité</td><td>Nom et prénom, genre, tranche d&apos;âge</td></tr>
+          <tr><td>Localisation</td><td>Commune, quartier, avenue et numéro de parcelle (Kinshasa)</td></tr>
           <tr><td>Contact</td><td>Adresse e-mail, numéro WhatsApp</td></tr>
           <tr><td>Profil</td><td>Langues parlées, domaines d&apos;aide, aisance à l&apos;oral, notions de secourisme, expérience, disponibilités</td></tr>
           <tr><td>Champs libres</td><td>Terrains/publics connus, idées de sensibilisation (facultatifs)</td></tr>

@@ -106,7 +106,9 @@ export default function CandidatureForm() {
 
     const payload = {
       nom: (data.nom as string) || "",
-      age: data.age as string, commune: data.commune as string, quartier: data.quartier as string,
+      age: data.age as string, genre: data.genre as string,
+      commune: data.commune as string, quartier: data.quartier as string,
+      avenue: data.avenue as string, numero: data.numero as string,
       langues: (data.langues as string[]) || [], email: data.email as string, tel: telCanonical(data.tel as string),
       secteurs: (data.secteurs as string[]) || [], parole: data.parole as string,
       secourisme: data.secourisme as string, experience: data.experience as string,
@@ -198,7 +200,7 @@ export default function CandidatureForm() {
                 Deviens Ambassadeur Communautaire.
               </h1>
               <p style={{ font: "400 clamp(15.5px,2.4vw,18px)/1.6 var(--font-schibsted),sans-serif", color: "#48526A", margin: "0 0 30px", maxWidth: "48ch" }}>
-                17 questions rapides, environ 3 minutes. Pas de diplôme requis — juste l&apos;envie d&apos;agir pour ton quartier.
+                20 questions rapides, environ 4 minutes. Pas de diplôme requis — juste l&apos;envie d&apos;agir pour ton quartier.
               </p>
               <button onClick={next} className="eb-cta" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "#fff", border: "none", cursor: "pointer", fontWeight: 700, fontSize: 16.5, padding: "16px 28px" }}>
                 Commencer <span aria-hidden>→</span>

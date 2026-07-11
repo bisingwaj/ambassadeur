@@ -13,7 +13,7 @@ for (const q of QUESTIONS) {
   else if (q.options) OPTIONS[q.key] = q.options;
 }
 const CHOICE = new Set(["single", "yesno", "grid"]);
-const MAXLEN: Record<string, number> = { nom: 120, quartier: 80, email: 160, tel: 40, publics: 2000, idees: 2000 };
+const MAXLEN: Record<string, number> = { nom: 120, quartier: 80, avenue: 120, numero: 20, email: 160, tel: 40, publics: 2000, idees: 2000 };
 const DEFAULT_MAXLEN = 200;
 const MAX_MULTI = 12;
 

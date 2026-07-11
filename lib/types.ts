@@ -24,8 +24,11 @@ export interface Candidature {
   nom: string;
   prenom: string | null;
   age: string | null;
+  genre: string | null;
   commune: string | null;
   quartier: string | null;
+  avenue: string | null;
+  numero: string | null;
   langues: string[] | null;
   email: string | null;
   tel: string | null;
@@ -47,8 +50,11 @@ export interface Candidature {
 export interface CandidaturePayload {
   nom: string;
   age?: string;
+  genre?: string;
   commune?: string;
   quartier?: string;
+  avenue?: string;
+  numero?: string;
   langues?: string[];
   email?: string;
   tel?: string;

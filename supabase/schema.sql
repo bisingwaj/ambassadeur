@@ -15,8 +15,11 @@ create table if not exists public.candidatures (
   nom          text not null,
   prenom       text,
   age          text,
+  genre        text,
   commune      text,
   quartier     text,
+  avenue       text,
+  numero       text,
   langues      text[],
   email        text,
   tel          text,
@@ -33,6 +36,12 @@ create table if not exists public.candidatures (
   consent      boolean not null default false,
   meta         jsonb
 );
+
+-- ── Migration : ajoute les colonnes de profilage si la table préexiste ──
+-- (create table if not exists ne touche pas une table déjà créée)
+alter table public.candidatures add column if not exists genre  text;
+alter table public.candidatures add column if not exists avenue text;
+alter table public.candidatures add column if not exists numero text;
 
 create index if not exists candidatures_created_at_idx on public.candidatures (created_at desc);
 create index if not exists candidatures_status_idx     on public.candidatures (status);
