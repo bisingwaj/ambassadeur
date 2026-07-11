@@ -91,7 +91,7 @@ export default async function CandidaturesList({ searchParams }: { searchParams:
   const sel: React.CSSProperties = { border: "1px solid #DCE1EC", background: "#fff", padding: "8px 10px", font: "500 13px/1 var(--font-schibsted),sans-serif", color: "#0B1B34", outline: "none" };
   const exportHref = (() => {
     const p = new URLSearchParams();
-    (["status", "commune", "q"] as const).forEach((k) => { if (sp[k]) p.set(k, sp[k]!); });
+    (["status", "commune", "langue", "secteur", "dispo", "score", "q"] as const).forEach((k) => { if (sp[k]) p.set(k, sp[k]!); });
     const s = p.toString();
     return s ? `/api/export?${s}` : "/api/export";
   })();

@@ -3,10 +3,13 @@ import { getServerClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { loadScored } from "@/lib/adminData";
 import { QUESTIONS } from "@/lib/questions";
 import { formatTel } from "@/lib/format";
+import { scoreBand } from "@/lib/scoring";
 import type { ScoredCandidature } from "@/lib/adminData";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+const isOui = (v: string | null) => (v || "").startsWith("Oui");
 
 function csvCell(v: unknown): string {
   let s = Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v);
@@ -29,16 +32,27 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const status = url.searchParams.get("status");
   const commune = url.searchParams.get("commune");
+  const langue = url.searchParams.get("langue");
+  const secteur = url.searchParams.get("secteur");
+  const dispo = url.searchParams.get("dispo");
+  const score = url.searchParams.get("score");
   const q = url.searchParams.get("q")?.toLowerCase();
   const idsParam = url.searchParams.get("ids");
   const ids = idsParam ? new Set(idsParam.split(",")) : null;
 
-  // Charge + score, puis applique les mêmes filtres que la liste.
+  // Charge + score, puis applique EXACTEMENT les mêmes filtres que la liste
+  // (sinon le CSV exporté ne correspond pas à ce que l'admin voit à l'écran).
   const { rows } = await loadScored();
   let filtered: ScoredCandidature[] = rows;
   if (ids) filtered = filtered.filter((r) => ids.has(r.id));
   if (status && status !== "tous") filtered = filtered.filter((r) => r.status === status);
   if (commune) filtered = filtered.filter((r) => r.commune === commune);
+  if (langue) filtered = filtered.filter((r) => (r.langues || []).includes(langue));
+  if (secteur) filtered = filtered.filter((r) => (r.secteurs || []).includes(secteur));
+  if (dispo === "soirwe") filtered = filtered.filter((r) => isOui(r.soir) && isOui(r.weekend));
+  else if (dispo === "secourisme") filtered = filtered.filter((r) => isOui(r.secourisme));
+  else if (dispo === "experience") filtered = filtered.filter((r) => isOui(r.experience));
+  if (score) filtered = filtered.filter((r) => scoreBand(r.score.total) === score);
   if (q) filtered = filtered.filter((r) => [r.nom, r.email, r.ref, r.tel, r.commune].some((f) => (f || "").toLowerCase().includes(q)));
 
   const cols = [

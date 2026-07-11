@@ -32,6 +32,7 @@ export default function CandidatureForm() {
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const advTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hpRef = useRef<HTMLInputElement>(null); // honeypot anti-bot
+  const lockRef = useRef(false); // verrou synchrone anti-double-soumission
 
   const isWelcome = step === 0;
   const isReview = step === TOTAL + 1;
@@ -95,12 +96,13 @@ export default function CandidatureForm() {
   };
 
   const submit = useCallback(async () => {
-    if (submitting) return;
+    if (submitting || lockRef.current) return;
     for (let i = 0; i < TOTAL; i++) {
       const err = validate(QUESTIONS[i]);
       if (err) { setStep(i + 1); setError(err); return; }
     }
     if (!consent) { setConsentErr("Merci de cocher cette case pour continuer."); return; }
+    lockRef.current = true;
     setSubmitting(true);
     setError(null);
 
@@ -127,10 +129,13 @@ export default function CandidatureForm() {
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Envoi impossible.");
       try {
-        localStorage.setItem("eb_candidature", JSON.stringify({ ...payload, ref: json.ref, prenom: payload.nom.split(/\s+/)[0] }));
+        // On ne conserve QUE le minimum pour la page de confirmation.
+        // Pas de PII (nom complet, tél, e-mail, réponses) laissée dans le navigateur.
+        localStorage.setItem("eb_candidature", JSON.stringify({ ref: json.ref, prenom: payload.nom.split(/\s+/)[0] }));
       } catch {}
       router.push(`/confirmation?ref=${encodeURIComponent(json.ref)}`);
     } catch (e) {
+      lockRef.current = false;
       setSubmitting(false);
       setError(e instanceof Error ? e.message : "Une erreur est survenue. Réessaie.");
     }

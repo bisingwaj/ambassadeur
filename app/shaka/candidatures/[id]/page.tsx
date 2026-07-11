@@ -25,7 +25,8 @@ export default async function CandidatureDetail({ params }: { params: Promise<{ 
   const c = data as Candidature;
 
   // Contexte de couverture (pour le facteur « zone » du score) sur l'ensemble.
-  const { data: allData } = await supabase.from("candidatures").select("commune");
+  // Même base que loadScored (ordre + limite) pour un score identique partout.
+  const { data: allData } = await supabase.from("candidatures").select("commune").order("created_at", { ascending: false }).limit(2000);
   const cov = communeCoverage((allData ?? []).map((x: { commune: string | null }) => ({ commune: x.commune })) as Candidature[]);
   const score = computeScore(c, { underCommunes: cov.under });
   const band = BAND_META[scoreBand(score.total)];
