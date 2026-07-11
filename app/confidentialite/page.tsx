@@ -111,8 +111,8 @@ export default function ConfidentialitePage() {
 
       <h2><span className="num">08</span>Cookies</h2>
       <p>
-        Le site utilise des cookies de <strong>mesure d&apos;audience et de marketing</strong> fournis par des
-        services tiers&nbsp;:
+        Le site déploie ses balises de mesure via <strong>Google&nbsp;Tag&nbsp;Manager</strong> et utilise des
+        cookies de <strong>mesure d&apos;audience et de marketing</strong> fournis par des services tiers&nbsp;:
       </p>
       <ul>
         <li><strong>Google&nbsp;Analytics</strong> — mesure d&apos;audience agrégée (pages vues, type d&apos;appareil, provenance)&nbsp;;</li>
