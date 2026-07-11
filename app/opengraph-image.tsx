@@ -84,7 +84,7 @@ export default function OpenGraphImage() {
               letterSpacing: "0.02em",
             }}
           >
-            199 · Le bon réflexe
+            199 · Chaque minute compte
           </span>
           <span style={{ fontSize: 26, color: "#7E93BC", fontWeight: 600 }}>{SITE.domainLabel}</span>
         </div>

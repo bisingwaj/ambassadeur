@@ -34,8 +34,10 @@ export default function ConfirmationView() {
       try {
         await navigator.share({ title: SITE.fullName, text: SHARE_TEXT, url });
         return;
-      } catch {
-        // annulé par l'utilisateur ou non supporté → repli ci-dessous
+      } catch (err) {
+        // L'utilisateur a fermé la fenêtre de partage : ne rien rouvrir.
+        if (err instanceof Error && err.name === "AbortError") return;
+        // Sinon (partage non supporté / erreur) → repli WhatsApp ci-dessous.
       }
     }
     window.open(
