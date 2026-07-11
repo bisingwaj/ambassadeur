@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/candidature.html", "destination": "/candidature", "permanent": true },
+    { "source": "/confirmation.html", "destination": "/confirmation", "permanent": true }
+  ]
+}
