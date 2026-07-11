@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { COPYRIGHT_YEAR } from "@/lib/site";
+import { COPYRIGHT_YEAR, SITE } from "@/lib/site";
+
+// Message personnel partagé après la candidature — le lien génère l'aperçu épuré (image OG).
+const SHARE_TEXT =
+  "Je viens de rejoindre les Ambassadeurs Communautaires d'Étoile Bleue 🌟 pour contribuer à rendre le 199 — le service d'aide médicale urgente gratuit qui va bientôt être lancé à Kinshasa — accessible près de chez moi. Rejoins le mouvement 👇";
 
 export default function ConfirmationView() {
   const params = useSearchParams();
@@ -22,6 +26,24 @@ export default function ConfirmationView() {
       } catch {}
     }
   }, [ref, prenom]);
+
+  async function share() {
+    const url = SITE.url;
+    // Partage natif (WhatsApp, SMS, réseaux sociaux…) quand le navigateur le supporte.
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: SITE.fullName, text: SHARE_TEXT, url });
+        return;
+      } catch {
+        // annulé par l'utilisateur ou non supporté → repli ci-dessous
+      }
+    }
+    window.open(
+      `https://wa.me/?text=${encodeURIComponent(`${SHARE_TEXT} ${url}`)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
 
   return (
     <div style={{ minHeight: "100dvh", background: "#fff", display: "flex", flexDirection: "column" }}>
@@ -69,13 +91,13 @@ export default function ConfirmationView() {
           </ol>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            <a
-              href={`https://wa.me/?text=${encodeURIComponent("Je viens de candidater comme Ambassadeur Communautaire Étoile Bleue 🌟 Rejoins la Cohorte 01 : ")}`}
+            <button
+              onClick={share}
               className="eb-cta"
-              style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "#fff", fontWeight: 600, fontSize: 15.5, padding: "14px 22px" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "#fff", fontWeight: 600, fontSize: 15.5, padding: "14px 22px", border: "none", cursor: "pointer" }}
             >
-              Inviter un ami <span aria-hidden>→</span>
-            </a>
+              Partager mon engagement <span aria-hidden>→</span>
+            </button>
             <Link href="/" className="eb-link-under" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#0B1B34", fontWeight: 600, fontSize: 15.5, padding: "14px 10px" }}>
               Retour à l&apos;accueil
             </Link>
