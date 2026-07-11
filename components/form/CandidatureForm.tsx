@@ -339,21 +339,19 @@ export default function CandidatureForm() {
           {isReview && (
             <div>
               <div style={{ font: "500 12.5px/1 var(--font-plex-mono),monospace", color: "#2E6AE0", marginBottom: 14 }}>Dernière étape</div>
-              <h2 style={{ font: "800 clamp(1.6rem,5vw,2.4rem)/1.12 var(--font-schibsted),sans-serif", letterSpacing: "-.02em", color: "#0B1B34", margin: "0 0 24px" }}>
-                Vérifie tes réponses.
+              <h2 style={{ font: "800 clamp(1.6rem,5vw,2.4rem)/1.12 var(--font-schibsted),sans-serif", letterSpacing: "-.02em", color: "#0B1B34", margin: "0 0 12px" }}>
+                Presque terminé.
               </h2>
-              <div style={{ border: "1px solid #E5E8EF" }}>
-                {QUESTIONS.map((qq, i) => {
-                  const v = data[qq.key];
-                  const disp = Array.isArray(v) ? v.join(", ") : (v as string);
-                  return (
-                    <button key={qq.key} onClick={() => go(i + 1)} style={{ width: "100%", textAlign: "left", display: "flex", justifyContent: "space-between", gap: 16, padding: "13px 16px", background: "#fff", border: "none", borderBottom: i < TOTAL - 1 ? "1px solid #EDF0F5" : "none", cursor: "pointer" }}>
-                      <span style={{ font: "600 12.5px/1.4 var(--font-schibsted),sans-serif", color: "#98A2B6", flex: "none", width: 130 }}>{qq.label}</span>
-                      <span style={{ font: "500 14px/1.4 var(--font-schibsted),sans-serif", color: disp?.trim() ? "#0B1B34" : "#C4CAD6", flex: 1 }}>{disp?.trim() ? disp : "—"}</span>
-                      <span style={{ color: "#2E6AE0", fontSize: 13, flex: "none" }}>Modifier</span>
-                    </button>
-                  );
-                })}
+              <p style={{ font: "400 clamp(15px,2.3vw,17px)/1.55 var(--font-schibsted),sans-serif", color: "#48526A", margin: "0 0 22px", maxWidth: "44ch" }}>
+                Tu as répondu à toutes les questions. Confirme ci-dessous pour envoyer ta candidature.
+              </p>
+
+              {/* Récap minimal — pas la liste complète */}
+              <div style={{ border: "1px solid #E5E8EF", padding: "16px 18px" }}>
+                <div style={{ font: "700 16px/1.25 var(--font-schibsted),sans-serif", color: "#0B1B34" }}>{(data.nom as string)?.trim() || "Ta candidature"}</div>
+                <div style={{ font: "500 13px/1.4 var(--font-schibsted),sans-serif", color: "#98A2B6", marginTop: 4 }}>
+                  {[data.commune, data.age, data.genre].filter((x) => typeof x === "string" && x.trim()).join("  ·  ") || "Toutes les réponses sont complétées"}
+                </div>
               </div>
 
               {/* Honeypot anti-bot : invisible, non focusable, ignoré des humains */}
@@ -367,7 +365,7 @@ export default function CandidatureForm() {
                 style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
               />
 
-              <label style={{ display: "flex", gap: 12, alignItems: "flex-start", margin: "24px 0 0", cursor: "pointer" }}>
+              <label style={{ display: "flex", gap: 12, alignItems: "flex-start", margin: "20px 0 0", cursor: "pointer" }}>
                 <input type="checkbox" checked={consent} onChange={(e) => { setConsent(e.target.checked); setConsentErr(null); }} style={{ width: 20, height: 20, marginTop: 2, accentColor: "#2E6AE0", flex: "none" }} />
                 <span style={{ font: "400 14px/1.55 var(--font-schibsted),sans-serif", color: "#48526A" }}>
                   J&apos;accepte d&apos;être contacté(e) par Étoile Bleue sur WhatsApp au sujet de ma candidature, je certifie que mes réponses sont exactes, et j&apos;accepte la{" "}
@@ -378,12 +376,18 @@ export default function CandidatureForm() {
               {consentErr && <p style={{ font: "600 14px/1.4 var(--font-schibsted),sans-serif", color: "#C8402C", margin: "12px 0 0" }}>{consentErr}</p>}
               {error && <p style={{ font: "600 14px/1.4 var(--font-schibsted),sans-serif", color: "#C8402C", margin: "12px 0 0" }}>{error}</p>}
 
-              <p style={{ font: "400 13px/1.5 var(--font-schibsted),sans-serif", color: "#98A2B6", margin: "16px 0 0" }}>
-                🔒 Vos données sont hébergées en propre (on-premise) et stockées localement sur les serveurs du Ministère, en République démocratique du Congo. Elles ne sont ni vendues ni transférées à l&apos;étranger.
-              </p>
+              <div style={{ display: "flex", gap: 8, alignItems: "flex-start", margin: "16px 0 0" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flex: "none", marginTop: 2 }} aria-hidden="true">
+                  <rect x="5" y="11" width="14" height="9" rx="2" stroke="#98A2B6" strokeWidth="1.8" />
+                  <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="#98A2B6" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+                <span style={{ font: "400 13px/1.5 var(--font-schibsted),sans-serif", color: "#98A2B6" }}>
+                  Tes données sont hébergées en propre (on-premise) et stockées localement sur les serveurs du Ministère, en RDC. Elles ne sont ni vendues ni transférées à l&apos;étranger.
+                </span>
+              </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 28 }}>
-                <button onClick={back} style={{ background: "none", border: "none", cursor: "pointer", font: "600 15px/1 var(--font-schibsted),sans-serif", color: "#98A2B6", padding: "10px 0" }}>← Retour</button>
+              <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 24 }}>
+                <button onClick={() => go(1)} style={{ background: "none", border: "none", cursor: "pointer", font: "600 15px/1 var(--font-schibsted),sans-serif", color: "#98A2B6", padding: "10px 0" }}>Modifier mes réponses</button>
                 <button onClick={submit} disabled={submitting} style={{ display: "inline-flex", alignItems: "center", gap: 9, background: submitting ? "#7FA0DC" : "#2E6AE0", color: "#fff", border: "none", cursor: submitting ? "default" : "pointer", fontWeight: 700, fontSize: 16, padding: "15px 26px", marginLeft: "auto" }}>
                   {submitting ? "Envoi…" : "Envoyer ma candidature →"}
                 </button>
