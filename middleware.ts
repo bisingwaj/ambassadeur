@@ -3,7 +3,7 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
 type CookieToSet = { name: string; value: string; options?: CookieOptions };
 
-// Rafraîchit la session Supabase et protège les routes /admin
+// Rafraîchit la session Supabase et protège les routes /shaka
 // (sauf la page de connexion). Si Supabase n'est pas configuré,
 // on laisse passer pour que le site public fonctionne quand même.
 export async function middleware(request: NextRequest) {
@@ -32,19 +32,19 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
-  const isAdmin = pathname.startsWith("/admin");
-  const isLogin = pathname === "/admin/login";
+  const isAdmin = pathname.startsWith("/shaka");
+  const isLogin = pathname === "/shaka/login";
 
   if (isAdmin && !isLogin && !user) {
     const redirect = request.nextUrl.clone();
-    redirect.pathname = "/admin/login";
+    redirect.pathname = "/shaka/login";
     redirect.searchParams.set("next", pathname);
     return NextResponse.redirect(redirect);
   }
 
   if (isLogin && user) {
     const redirect = request.nextUrl.clone();
-    redirect.pathname = "/admin";
+    redirect.pathname = "/shaka";
     redirect.search = "";
     return NextResponse.redirect(redirect);
   }
@@ -53,5 +53,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/shaka/:path*"],
 };

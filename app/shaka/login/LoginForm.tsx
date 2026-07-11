@@ -7,9 +7,9 @@ import { getBrowserClient } from "@/lib/supabase/client";
 export default function AdminLogin() {
   const router = useRouter();
   const params = useSearchParams();
-  // Anti open-redirect : uniquement un chemin interne (/admin…), jamais //evil ni http(s)://…
-  const rawNext = params.get("next") || "/admin";
-  const next = /^\/admin(?:\/|$)/.test(rawNext) ? rawNext : "/admin";
+  // Anti open-redirect : uniquement un chemin interne (/shaka…), jamais //evil ni http(s)://…
+  const rawNext = params.get("next") || "/shaka";
+  const next = /^\/shaka(?:\/|$)/.test(rawNext) ? rawNext : "/shaka";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);

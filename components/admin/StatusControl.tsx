@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { updateStatus } from "@/app/admin/actions";
+import { updateStatus } from "@/app/shaka/actions";
 import { STATUS_META, type CandidatureStatus } from "@/lib/types";
 
 const ORDER: CandidatureStatus[] = ["nouveau", "en_revue", "accepte", "refuse"];

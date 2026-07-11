@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { updateStatusBulk } from "@/app/admin/actions";
+import { updateStatusBulk } from "@/app/shaka/actions";
 import { STATUS_META, type CandidatureStatus } from "@/lib/types";
 import { BAND_META, type ScoreBand } from "@/lib/scoring";
 import { formatTel } from "@/lib/format";
@@ -103,9 +103,9 @@ export default function CandidatureTable({ rows }: { rows: Row[] }) {
                   <td style={td}>
                     <input type="checkbox" checked={sel} onChange={() => toggle(r.id)} style={{ width: 16, height: 16, accentColor: "#2E6AE0", cursor: "pointer" }} aria-label={`Sélectionner ${r.nom}`} />
                   </td>
-                  <td style={td}><Link href={`/admin/candidatures/${r.id}`} style={{ font: "600 12.5px/1 var(--font-plex-mono),monospace", color: "#2E6AE0" }}>{r.ref}</Link></td>
+                  <td style={td}><Link href={`/shaka/candidatures/${r.id}`} style={{ font: "600 12.5px/1 var(--font-plex-mono),monospace", color: "#2E6AE0" }}>{r.ref}</Link></td>
                   <td style={td}>
-                    <Link href={`/admin/candidatures/${r.id}`} style={{ font: "600 14px/1.3 var(--font-schibsted),sans-serif", color: "#0B1B34" }}>{r.nom}</Link>
+                    <Link href={`/shaka/candidatures/${r.id}`} style={{ font: "600 14px/1.3 var(--font-schibsted),sans-serif", color: "#0B1B34" }}>{r.nom}</Link>
                     {r.tags.length > 0 && (
                       <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
                         {r.tags.slice(0, 2).map((t) => (

@@ -40,7 +40,7 @@ export default async function CandidatureDetail({ params }: { params: Promise<{ 
 
   return (
     <div style={{ maxWidth: 960 }}>
-      <Link href="/admin/candidatures" style={{ font: "600 13.5px/1 var(--font-schibsted),sans-serif", color: "#5A6478" }}>← Toutes les candidatures</Link>
+      <Link href="/shaka/candidatures" style={{ font: "600 13.5px/1 var(--font-schibsted),sans-serif", color: "#5A6478" }}>← Toutes les candidatures</Link>
 
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, flexWrap: "wrap", margin: "16px 0 6px" }}>
         <div>

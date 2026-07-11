@@ -77,7 +77,7 @@ export default async function CandidaturesList({ searchParams }: { searchParams:
     Object.entries(merged).forEach(([k, v]) => { if (v && k !== "page") p.set(k, String(v)); });
     if (merged.page && Number(merged.page) > 1) p.set("page", String(merged.page));
     const s = p.toString();
-    return s ? `/admin/candidatures?${s}` : "/admin/candidatures";
+    return s ? `/shaka/candidatures?${s}` : "/shaka/candidatures";
   };
 
   const statusPills: { key: string; label: string }[] = [
@@ -117,7 +117,7 @@ export default async function CandidaturesList({ searchParams }: { searchParams:
       </div>
 
       {/* Filtres avancés (GET) */}
-      <form action="/admin/candidatures" style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", background: "#fff", border: "1px solid #E5E8EF", padding: 12, marginBottom: 8 }}>
+      <form action="/shaka/candidatures" style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", background: "#fff", border: "1px solid #E5E8EF", padding: 12, marginBottom: 8 }}>
         {sp.status && <input type="hidden" name="status" value={sp.status} />}
         <input name="q" defaultValue={sp.q || ""} placeholder="Nom, e-mail, réf, tél…" style={{ ...sel, minWidth: 190 }} />
         <select name="commune" defaultValue={sp.commune || ""} style={sel}><option value="">Toutes communes</option>{COMMUNES.map((c) => <option key={c} value={c}>{c}</option>)}</select>

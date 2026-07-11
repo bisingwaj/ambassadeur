@@ -64,7 +64,7 @@ export default async function AdminOverview() {
           <h1 style={{ font: "800 clamp(1.5rem,3vw,2rem)/1.1 var(--font-schibsted),sans-serif", color: "#0B1B34", margin: 0 }}>Vue d&apos;ensemble</h1>
           <p style={{ font: "400 13px/1.4 var(--font-schibsted),sans-serif", color: "#98A2B6", margin: "6px 0 0" }}>Profilage & analyse de la Cohorte 01</p>
         </div>
-        <Link href="/admin/candidatures" className="eb-cta" style={{ color: "#fff", fontWeight: 600, fontSize: 13.5, padding: "10px 16px" }}>
+        <Link href="/shaka/candidatures" className="eb-cta" style={{ color: "#fff", fontWeight: 600, fontSize: 13.5, padding: "10px 16px" }}>
           Voir les candidatures →
         </Link>
       </div>
@@ -139,7 +139,7 @@ export default async function AdminOverview() {
           {top.map((r, i) => {
             const band = BAND_META[scoreBand(r.score.total)];
             return (
-              <Link key={r.id} href={`/admin/candidatures/${r.id}`} style={{ display: "grid", gridTemplateColumns: "26px 1fr auto auto", alignItems: "center", gap: 12, padding: "10px 8px", borderBottom: i < top.length - 1 ? "1px solid #F0F2F6" : "none" }}>
+              <Link key={r.id} href={`/shaka/candidatures/${r.id}`} style={{ display: "grid", gridTemplateColumns: "26px 1fr auto auto", alignItems: "center", gap: 12, padding: "10px 8px", borderBottom: i < top.length - 1 ? "1px solid #F0F2F6" : "none" }}>
                 <span style={{ font: "700 12px/1 var(--font-plex-mono),monospace", color: "#C4CAD6" }}>{String(i + 1).padStart(2, "0")}</span>
                 <span style={{ font: "600 14px/1.2 var(--font-schibsted),sans-serif", color: "#0B1B34", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {r.nom} <span style={{ color: "#98A2B6", fontWeight: 400 }}>· {r.commune || "—"}</span>
