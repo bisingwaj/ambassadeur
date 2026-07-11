@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { SITE } from "@/lib/site";
 import "./globals.css";
+
+// Identifiant Google Analytics (gtag.js). Configurable via env, sinon la
+// valeur fournie par la Coordination.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-JC3VFEC9CF";
 
 // Polices auto-hébergées (offline-safe, rapides, sans requête tierce).
 const schibsted = localFont({
@@ -66,6 +71,19 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${schibsted.variable} ${plexMono.variable}`}>
       <body>{children}</body>
+      {GA_ID && (
+        <>
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}
+          </Script>
+        </>
+      )}
     </html>
   );
 }
