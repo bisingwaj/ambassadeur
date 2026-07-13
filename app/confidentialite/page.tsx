@@ -116,6 +116,7 @@ export default function ConfidentialitePage() {
       </p>
       <ul>
         <li><strong>Google&nbsp;Analytics</strong> — mesure d&apos;audience agrégée (pages vues, type d&apos;appareil, provenance)&nbsp;;</li>
+        <li><strong>Google&nbsp;Ads</strong> — mesure des conversions (candidatures abouties) issues de nos campagnes publicitaires&nbsp;;</li>
         <li><strong>pixel Meta (Facebook)</strong> — mesure de la performance de nos campagnes et diffusion de <strong>publicités ciblées</strong> sur les plateformes de Meta (Facebook, Instagram).</li>
       </ul>
       <p>

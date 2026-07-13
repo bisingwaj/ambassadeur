@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { COPYRIGHT_YEAR, SITE } from "@/lib/site";
@@ -8,6 +8,9 @@ import { COPYRIGHT_YEAR, SITE } from "@/lib/site";
 // Message personnel partagé après la candidature — le lien génère l'aperçu épuré (image OG).
 const SHARE_TEXT =
   "Je viens de rejoindre les Ambassadeurs Communautaires d'Étoile Bleue 🌟 pour contribuer à rendre le 199 — le service d'aide médicale urgente gratuit qui va bientôt être lancé à Kinshasa — accessible près de chez moi. Rejoins le mouvement 👇";
+
+// Libellé de conversion Google Ads déclenché quand une candidature aboutit.
+const ADS_CONVERSION_SEND_TO = "AW-18315860704/_zeQCLf0zM8cEOC1151E";
 
 export default function ConfirmationView() {
   const params = useSearchParams();
@@ -26,6 +29,16 @@ export default function ConfirmationView() {
       } catch {}
     }
   }, [ref, prenom]);
+
+  // Conversion Google Ads : déclenchée une seule fois, uniquement lorsqu'une
+  // candidature valide aboutit à la confirmation (référence présente).
+  const converted = useRef(false);
+  useEffect(() => {
+    if (!ref || converted.current) return;
+    converted.current = true;
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    w.gtag?.("event", "conversion", { send_to: ADS_CONVERSION_SEND_TO });
+  }, [ref]);
 
   async function share() {
     const url = SITE.url;

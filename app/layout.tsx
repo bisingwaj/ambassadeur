@@ -8,6 +8,9 @@ import "./globals.css";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-JC3VFEC9CF";
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1349940203756240";
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-MQCVDT63";
+// Google Ads (suivi de conversion des candidatures). Le libellé de
+// conversion est déclenché sur la page /confirmation (voir ConfirmationView).
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-18315860704";
 
 // Polices auto-hébergées (offline-safe, rapides, sans requête tierce).
 const schibsted = localFont({
@@ -80,13 +83,13 @@ export default function RootLayout({
             }}
           />
         )}
-        {/* Google Analytics (gtag.js) */}
-        {GA_ID && (
+        {/* Google Analytics (gtag.js) + Google Ads — un seul chargeur gtag.js */}
+        {(GA_ID || ADS_ID) && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID || ADS_ID}`} />
             <script
               dangerouslySetInnerHTML={{
-                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${GA_ID ? `gtag('config','${GA_ID}');` : ""}${ADS_ID ? `gtag('config','${ADS_ID}');` : ""}`,
               }}
             />
           </>
